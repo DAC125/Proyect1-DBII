@@ -8,7 +8,10 @@ package controlador;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -84,6 +87,7 @@ public class Controlador extends HttpServlet {
         String accion = request.getParameter("accion");
         Connection con = OracleConexion.conectar();
        
+       
         switch (accion){
             case "Listar":
                 
@@ -92,10 +96,10 @@ public class Controlador extends HttpServlet {
                 p.setNombre("keneth");
                 p.setTelefono("88888888");*/
               
-                p.setId("117040878");
-                p.setCarne("2018109507");
-                p.setNombre("diego");
-                p.setTelefono("87684748");
+                p.setId("11");
+                p.setCarne("22");
+                p.setNombre("loerem");
+                p.setTelefono("1212;");
                       
                 
                 try {
@@ -113,11 +117,11 @@ public class Controlador extends HttpServlet {
                 }
                 break;
            case "Modificar":
-                System.out.println("holaaaaa");
-                p.setId("117040878");
-                p.setCarne("fffffff");
-                p.setNombre("pppppp");
-                p.setTelefono("rrrrrrr");
+               // System.out.println("holaaaaa");
+                p.setId("11");
+                p.setCarne("20199999");
+                p.setNombre("estudiante");
+                p.setTelefono("888888888");
                try {
                     mensaje = dao.modificarPersona(con, p);
                     System.out.println(mensaje);

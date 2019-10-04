@@ -25,7 +25,7 @@ public class OracleConexion {
         try{
             Class.forName("oracle.jdbc.OracleDriver");
             con=DriverManager.getConnection(url, user, pass);
-            con.setAutoCommit(false);
+            con.setAutoCommit(true);
             if(con != null){
                 System.out.println("Conexion Exitosa");
             }else{

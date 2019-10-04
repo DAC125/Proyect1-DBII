@@ -43,20 +43,19 @@ public class PersonaDAO {
         PreparedStatement pst = null;
         
         //String sql = "update persona set carne= '222', nombre = 'tytyrty', telefono = '4545' where id = '117040878'";
-        //String sql = "update persona set carne = ?, nombre = ?, telefono = ?  where id = ?";
-       //String sql = "insert into persona (id,carne,nombre,telefono) values (?,?,?,?)";
+       String sql = "update persona set carne = ?, nombre = ?, telefono = ?  where id = ?";
+       //String sql = "update persona set carne = ? , nombre = ? where id = ?";
+      // String sql = "insert into persona (id,carne,nombre,telefono) values (?,?,?,?)";
        
         try {
             
             pst = con.prepareStatement(sql);
-            /*
             pst.setString(1, per.getCarne());
             pst.setString(2, per.getNombre());
             pst.setString(3, per.getTelefono());
             pst.setString(4, per.getId());
-            */ 
-           mensaje = "Guardado Correctamente";
             
+           mensaje = "Guardado Correctamente";
             pst.execute();
             pst.close();
         } catch (SQLException e) {
