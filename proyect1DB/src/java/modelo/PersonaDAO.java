@@ -34,16 +34,21 @@ public class PersonaDAO {
             pst.execute();
             pst.close();
         } catch (SQLException e) {
-            mensaje = "Guardado Correctamente\n "+e.getMessage();
+            mensaje = "No se pudo guardar correctamente" + e.getMessage();
         }
         return mensaje;
     }
     
     public String modificarPersona(Connection con, Persona per){
         PreparedStatement pst = null;
-        String sql = "UPDATE PERSONA SET CARNE = ?, NOMBRE = ?, TELEFONO = ?  "
-                + "WHERE ID = ?";
+        
+        
+        String sql = "update persona set carne = ?, nombre = ?, telefono = ?  "
+                + "where id = ?";
+      // String sql = "insert into persona (id,carne,nombre,telefono) values (?,?,?,?)";
+       
         try {
+            
             pst = con.prepareStatement(sql);
             pst.setString(1, per.getCarne());
             pst.setString(2, per.getNombre());
@@ -53,7 +58,7 @@ public class PersonaDAO {
             pst.execute();
             pst.close();
         } catch (SQLException e) {
-            mensaje = "Guardado Correctamente\n "+e.getMessage();
+            mensaje = "No se pudo guardar correctamente" + e.getMessage();
         }
         return mensaje;
     }
