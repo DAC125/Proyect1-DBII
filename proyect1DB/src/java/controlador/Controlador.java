@@ -87,15 +87,15 @@ public class Controlador extends HttpServlet {
         switch (accion){
             case "Listar":
                 
-                p.setId("00000000");
+                /*p.setId("00000000");
                 p.setCarne("11111111");
                 p.setNombre("keneth");
-                p.setTelefono("88888888");
+                p.setTelefono("88888888");*/
               
-                /*p.setId("117040878");
+                p.setId("117040878");
                 p.setCarne("2018109507");
                 p.setNombre("diego");
-                p.setTelefono("87684748");*/
+                p.setTelefono("87684748");
                       
                 
                 try {
@@ -113,7 +113,7 @@ public class Controlador extends HttpServlet {
                 }
                 break;
            case "Modificar":
-                
+                System.out.println("holaaaaa");
                 p.setId("117040878");
                 p.setCarne("fffffff");
                 p.setNombre("pppppp");
