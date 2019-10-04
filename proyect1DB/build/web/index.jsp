@@ -17,7 +17,7 @@
         <div>
             <h3>Estudiantes</h3>
             <form action="controlador" method="POST">
-                <input type="submit" name="accion" value="Listar">
+                <input type="submit" name="accion" value="Listar"> 
                 <input type="submit" name="accion" value="Modificar">
             </form>
         </div>
