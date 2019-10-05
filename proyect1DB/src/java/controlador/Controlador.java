@@ -89,14 +89,14 @@ public class Controlador extends HttpServlet {
        
        
         switch (accion){
-            case "Listar":
+            case "Insertar":
                 
                 /*p.setId("00000000");
                 p.setCarne("11111111");
                 p.setNombre("keneth");
                 p.setTelefono("88888888");*/
               
-                p.setId("11");
+                p.setId("13");
                 p.setCarne("22");
                 p.setNombre("loerem");
                 p.setTelefono("1212;");
@@ -115,9 +115,8 @@ public class Controlador extends HttpServlet {
                         mensaje = mensaje + " " +e.getMessage();
                     }
                 }
-                break;
+            break;
            case "Modificar":
-               // System.out.println("holaaaaa");
                 p.setId("11");
                 p.setCarne("20199999");
                 p.setNombre("estudiante");
@@ -136,6 +135,31 @@ public class Controlador extends HttpServlet {
                         mensaje = mensaje + " " +e.getMessage();
                     }
                 }
+            break;
+            case "Eliminar":
+                try {
+                    mensaje = dao.eliminarPersona(con, "13");
+                    System.out.println(mensaje);
+                } catch (Exception e) {
+                    mensaje = mensaje + " " +e.getMessage();
+                }finally{
+                    try {
+                        if (con != null){
+                            con.close();
+                        }
+                    } catch (Exception e) {
+                        mensaje = mensaje + " " +e.getMessage();
+                    }
+                }
+               
+            break;
+            case "Listar":
+                List<Persona>datos=dao.listarPersona(con);
+                System.out.println(datos);
+                request.setAttribute("datos", datos);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                
+                 
             break;
         }
     }
