@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,15 +66,54 @@ public class PersonaDAO {
     }
     
     public String eliminarPersona(Connection con, String id){
+        PreparedStatement pst = null;
+        
+         String sql = "delete from persona where id = ?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, id);
+            mensaje = "Eliminado Correctamente";
+            pst.execute();
+            pst.close();
+        } catch (SQLException e) {
+            mensaje = "No se pudo eliminar correctamente" + e.getMessage();
+        }
         return mensaje;
     }
     
-    public void listarPersona(){
+    public List<Persona> listarPersona(Connection con){
+        Statement st;
+        ResultSet rs;
+        List<Persona>lista =new ArrayList<>();
+        String sql = "SELECT * FROM persona" ;
+        System.out.println(sql);
+        String [] fila = new String[4];
+        
+        try{
+            st=con.createStatement();
+            rs=st.executeQuery(sql);
+            while (rs.next())  {
+                for (int i=0;i<4;i++){
+                    fila[i]=rs.getString(i+1);
+                }
+                Persona p =new Persona();
+                p.setId(fila[0]);
+                p.setCarne(fila[1]);
+                p.setNombre(fila[2]);
+                p.setTelefono(fila[3]);
+                System.out.println(rs);
+                lista.add(p);
+            }      
+            st.close();       
+        }catch(Exception e){
+            System.out.println("No se pudo enlistar los datos");
+        }
+        return lista;
        
     }
     
     
-    /*PreparedStatement ps;
+    /*PreparedStatement st;
     ResultSet rs;
     OracleConexion c=new OracleConexion();
     Connection con;
@@ -85,8 +125,8 @@ public class PersonaDAO {
         try{
             
             con=c.conectar();
-            ps=con.prepareStatement(sql);
-            rs=ps.executeQuery();
+            st=con.prepareStatement(sql);
+            rs=st.executeQuery();
             while (rs.next())  {
                 System.out.println("kkk");
                 Persona p =new Persona();

@@ -17,8 +17,11 @@
         <div>
             <h3>Estudiantes</h3>
             <form action="controlador" method="POST">
-                <input type="submit" name="accion" value="Listar"> 
+                <input type="submit" name="accion" value="Insertar"> 
                 <input type="submit" name="accion" value="Modificar">
+                <input type="submit" name="accion" value="Eliminar">
+                <input type="submit" name="accion" value="Listar">
+                
             </form>
         </div>
        
