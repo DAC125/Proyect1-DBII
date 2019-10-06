@@ -74,19 +74,43 @@
 
                     <div class="articulos">
                         <tbody>
-                            <% for (int i = 0; i < 8; i += 1) {%>
+                            <% for (int i = 0; i < 9; i += 1) {%>
                             <tr>      
-                                 <div class="article col-sm-4">
-                                 <img class="image" src="images/articulos/1.jpg" />
-                                 <h4 class="title">Articulo</h4>
-                                 <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <div class="article col-sm-4">
+                            <img class="image" src="images/articulos/1.jpg" />
+                            <h4 class="title">Articulo</h4>
+                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
 
-                                <span class="price">$000</span>
-                                <a href="#" class="btn btn-primary">Mas Informacion</a>
+                            <span class="price">$000</span>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#articulo">Mas Informacion</button>
                         </div>                            </tr>
                         <% }%>
 
-                        
+                        <div class="modal" tabindex="-1" role="dialog" id="articulo">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5>Articulo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img class="image" src="images/articulos/1.jpg" />
+                                        <p class='text'>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        </p>
+                                        <span class="price">$000</span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
 

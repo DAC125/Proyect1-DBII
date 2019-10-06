@@ -30,3 +30,20 @@ body{
     float: right;
     width: 127px;
 }
+.modal .modal-body .image{
+    width: 50%;
+    position: relative;
+    top: -96px;
+}
+.modal .modal-body .text{
+    margin-top: 40px;
+    width: 48%;
+    display: inline-block;
+    
+}
+.modal .modal-body .price{
+    float: right;
+    position: relative;
+    top: -15px;
+   
+}
