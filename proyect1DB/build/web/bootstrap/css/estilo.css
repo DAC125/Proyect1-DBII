@@ -1,5 +1,27 @@
+#cuadro{
+    width: 550px;
+    border-bottom: 1px solid #e2e2e2;
+    border-top: 1px solid #e2e2e2;
+    border-left: 1px solid #e2e2e2;
+    border-right: 1px solid #e2e2e2;
+    margin: auto;
+    margin-top: 190px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px #000;
+}
+
+
+#cuerpo{
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-top: 25px;
+   padding-bottom: 25px;
+}
+.btns{
+    padding-left: 65px;
+}
 body{
-    background-color: #e2e2e2;
+    background-color: #ebebeb;
 }
 #header{
     background: #1b6d85;
@@ -33,17 +55,18 @@ body{
 .modal .modal-body .image{
     width: 50%;
     position: relative;
-    top: -96px;
+   
 }
 .modal .modal-body .text{
     margin-top: 40px;
     width: 48%;
     display: inline-block;
+    font-family: Georgia, serif;
+    font-weight: bold;
     
 }
-.modal .modal-body .price{
-    float: right;
-    position: relative;
-    top: -15px;
-   
+.botones{
+    margin-top: 20px;
+    margin-left: 80px;
 }
+ 
