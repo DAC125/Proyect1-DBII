@@ -17,9 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.OracleConexion;
-import modelo.Persona;
+import modelo.*;
 
-import modelo.PersonaDAO;
 
 /**
  *
@@ -36,25 +35,73 @@ public class Controlador extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private PersonaDAO dao =new PersonaDAO();
-    private Persona p =new Persona();
-    private String mensaje ="";
-    
+    private Components_StyleDAO dao_com = new Components_StyleDAO();
+    private Keyboards_StyleDAO dao_key = new Keyboards_StyleDAO();
+    private Mouses_StyleDAO dao_mou = new Mouses_StyleDAO();
+    private Built_Computers_StyleDAO dao_comp = new Built_Computers_StyleDAO();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet controlador</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet controlador at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+         Connection con = OracleConexion.conectar();
+         System.out.println("jgfdjyrtfdk");
+         String accion=request.getParameter("accion");
+         switch (accion){
+            case "componentesadmin1":
+                List<Components_Style> datosad = dao_com.listarComponents_Style(con);
+                request.setAttribute("datos", datosad);
+                request.getRequestDispatcher("principaladmin.jsp").forward(request, response);
+            break;
+            case "componentesadmin":
+                List<Components_Style> datosad1 = dao_com.listarComponents_Style(con);
+                request.setAttribute("datos", datosad1);
+                request.getRequestDispatcher("principaladmin.jsp").forward(request, response);
+            break;
+            case "tecladosadmin":
+                List<Keyboards_Style> datosad2 = dao_key.listarKeyboards_Style(con);
+                request.setAttribute("datos", datosad2);
+                request.getRequestDispatcher("principaladmin.jsp").forward(request, response);
+            break;
+            case "mousesadmin":
+                List<Mouses_Style> datosad3 = dao_mou.listarMouses_Style(con);
+                request.setAttribute("datos", datosad3);
+                request.getRequestDispatcher("principaladmin.jsp").forward(request, response);
+            break;
+            case "computadorasadmin":
+                List<Built_Computers_Style> datosad4 = dao_comp.listarBuilt_Computers_Style(con);
+                request.setAttribute("datas", datosad4);
+                request.getRequestDispatcher("principaladmin.jsp").forward(request, response);
+            break;
+            case "componentes1":
+                
+                List<Components_Style> datos = dao_com.listarComponents_Style(con);
+                request.setAttribute("datos", datos);
+                request.getRequestDispatcher("principal.jsp").forward(request, response);
+            break;
+            case "componentes":
+                List<Components_Style> datos1 = dao_com.listarComponents_Style(con);
+                request.setAttribute("datos", datos1);
+                request.getRequestDispatcher("principal.jsp").forward(request, response);
+            break;
+            case "teclados":
+                List<Keyboards_Style> datos2 = dao_key.listarKeyboards_Style(con);
+                request.setAttribute("datos", datos2);
+                request.getRequestDispatcher("principal.jsp").forward(request, response);
+            break;
+            case "mouses":
+                List<Mouses_Style> datos3 = dao_mou.listarMouses_Style(con);
+                request.setAttribute("datos", datos3);
+                request.getRequestDispatcher("principal.jsp").forward(request, response);
+            break;
+            case "computadoras":
+                List<Built_Computers_Style> datos4 = dao_comp.listarBuilt_Computers_Style(con);
+                request.setAttribute("datas", datos4);
+                request.getRequestDispatcher("principal.jsp").forward(request, response);
+            break;
+            
+         
+         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -82,86 +129,9 @@ public class Controlador extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException {
+            throws ServletException, IOException {
+        processRequest(request, response);
 
-        String accion = request.getParameter("accion");
-        Connection con = OracleConexion.conectar();
-       
-       
-        switch (accion){
-            case "Insertar":
-                
-                /*p.setId("00000000");
-                p.setCarne("11111111");
-                p.setNombre("keneth");
-                p.setTelefono("88888888");*/
-              
-                p.setId("13");
-                p.setCarne("22");
-                p.setNombre("loerem");
-                p.setTelefono("1212;");
-                      
-                
-                try {
-                    mensaje = dao.agregarPersona(con, p);
-                } catch (Exception e) {
-                    mensaje = mensaje + " " +e.getMessage();
-                }finally{
-                    try {
-                        if (con != null){
-                            con.close();
-                        }
-                    } catch (Exception e) {
-                        mensaje = mensaje + " " +e.getMessage();
-                    }
-                }
-            break;
-           case "Modificar":
-                p.setId("11");
-                p.setCarne("20199999");
-                p.setNombre("estudiante");
-                p.setTelefono("888888888");
-               try {
-                    mensaje = dao.modificarPersona(con, p);
-                    System.out.println(mensaje);
-                } catch (Exception e) {
-                    mensaje = mensaje + " " +e.getMessage();
-                }finally{
-                    try {
-                        if (con != null){
-                            con.close();
-                        }
-                    } catch (Exception e) {
-                        mensaje = mensaje + " " +e.getMessage();
-                    }
-                }
-            break;
-            case "Eliminar":
-                try {
-                    mensaje = dao.eliminarPersona(con, "13");
-                    System.out.println(mensaje);
-                } catch (Exception e) {
-                    mensaje = mensaje + " " +e.getMessage();
-                }finally{
-                    try {
-                        if (con != null){
-                            con.close();
-                        }
-                    } catch (Exception e) {
-                        mensaje = mensaje + " " +e.getMessage();
-                    }
-                }
-               
-            break;
-            case "Listar":
-                List<Persona>datos=dao.listarPersona(con);
-                System.out.println(datos);
-                request.setAttribute("datos", datos);
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-                
-                 
-            break;
-        }
     }
 
     /**
